@@ -1,0 +1,11 @@
+# Talks & demos for Capgemini APPS Evolve! Summit 2016
+
+== Generate the slideshow and hands-on-labs
+
+Please refer the link:BUILD.adoc[Instructions] for informations how to build and
+serve the slideshow.
+
+== Copyright and Licensing
+
+Copyright (C) 2016 Krzysztof Sobkowiak +
+Free use of this software is granted under the terms of the link:LICENSE[Apache License].
