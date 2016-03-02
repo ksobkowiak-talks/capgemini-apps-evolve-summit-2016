@@ -449,3 +449,21 @@ body {
       position: relative;
       top: -40px;
     }
+
+    .centering {
+      text-align: center;
+    }
+
+    .centering .large-text {
+      font-size: 2em
+    }
+
+    .listingblock .highlight {
+      font-size: 0.75em;
+      width: 100%;
+    }
+
+    .listingblock .pygments {
+      font-size: 0.75em;
+      width: 100%;
+    }

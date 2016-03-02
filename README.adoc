@@ -1,4 +1,4 @@
-# Talks & demos for Capgemini APPS Evolve! Summit 2016
+# Talks for Capgemini APPS Evolve! Summit 2016
 
 == Generate the slideshow and hands-on-labs
 

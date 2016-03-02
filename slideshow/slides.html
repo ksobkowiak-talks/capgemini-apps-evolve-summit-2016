@@ -1,0 +1,137 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Microservices With Spring Boot and Spring Cloud</title><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport"><link href="reveal.js/css/reveal.css" rel="stylesheet"><link rel="stylesheet" href="assets/css/conference.css" id="theme"><link href="reveal.js/lib/css/zenburn.css" rel="stylesheet"><script>document.write( '<link rel="stylesheet" href="reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );</script></head><body><div class="reveal"><div class="slides"><section><h1>Microservices With Spring Boot and Spring Cloud</h1><div class="openblock cover"><div class="content"><div class="paragraph"><p>Example for a Microservices-based Architecture</p></div>
+<div class="paragraph newline"><p>APPS Evolve! Summit 2016<br>
+Frankfurt, 04 March 2016</p></div>
+<div class="paragraph newline"><p>Krzysztof Sobkowiak</p></div></div></div><p><small></small></p></section>
+<section id="_outline"><h2>Outline</h2><table class="tableblock frame-all grid-all noredheader" style="width:100%"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><tbody><tr><td class="tableblock halign-left valign-top"><div><div class="ulist"><ul><li><p>Domain Architecture</p></li><li><p>Basic Technologies</p></li><li><p>Build &amp; Deployment</p></li><li><p>Service Discovery</p></li></ul></div></div></td><td class="tableblock halign-left valign-top"><div><div class="ulist"><ul><li><p>Communication</p></li><li><p>Resilience</p></li><li><p>Load Balancing</p></li></ul></div></div></td></tr></tbody></table></section>
+<section><section id="_domain_architecture"><h2>Domain Architecture</h2></section><section id="_three_microservices"><h2>Three Microservices</h2><div class="openblock centering"><div class="content"><div class="paragraph"><p><span class="image"><img src="images/domain-architecture-bg.png" alt="domain architecture bg" width="80%"></span></p></div></div></div></section><section id="_architecture_considerations"><h2>Architecture Considerations</h2><div class="ulist"><ul><li><p>Separate data storages</p></li><li><p>Lots of communication</p></li><li><p>Bounded Context</p></li><li><p>Don&#8217;t modularize microservices by data</p></li></ul></div></section></section>
+<section><section id="_basic_technologies"><h2>Basic Technologies</h2></section><section id="_hsql_database"><h2>HSQL Database</h2><div class="ulist"><ul><li><p>In memory database</p></li><li><p>Not really suited for production use</p></li><li><p>Keeps the example application easy</p></li></ul></div></section><section id="_spring_data_jpa"><h2>Spring Data JPA</h2><div class="ulist"><ul><li><p>Provides support to build repositories based on Spring and JPA</p></li><li><p>Support for Querydsl predicates and thus type-safe JPA queries</p></li><li><p>Pagination support, dynamic query execution, ability to integrate custom data access code</p></li></ul></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code class="java language-java">public interface PersonRepository extends PagingAndSortingRepository&lt;Person, Long&gt; {
+  List&lt;Person&gt; findByLastName(@Param("name") String name);
+}</code></pre></div></div></section><section id="_spring_data_rest"><h2>Spring Data REST</h2><div class="ulist"><ul><li><p>Provides the domain objects with little effort via REST</p></li><li><p>Can hide certain data elements</p></li><li><p>Can be configured flexibly</p></li><li><p>Tight coupling between the internal model and the interface can be decoupled</p></li></ul></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code class="java language-java">@RepositoryRestResource(collectionResourceRel = "people", path = "people")
+public interface PersonRepository extends PagingAndSortingRepository&lt;Person, Long&gt; {
+  List&lt;Person&gt; findByLastName(@Param("name") String name);
+}</code></pre></div></div></section><section id="_spring_boot"><h2>Spring Boot</h2><table class="tableblock frame-all grid-all noredheader" style="width:100%"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><tbody><tr><td class="tableblock halign-left valign-top"><div><div class="ulist"><ul><li><p>It can be pretty small&#8230;&#8203;</p></li><li><p>Predefined packages/starters available</p></li><li><p>Can generate WAR or JAR file</p></li></ul></div></div></td><td class="tableblock halign-left valign-top"><div><div class="listingblock"><div class="content"><pre class="highlight"><code class="java language-java">@RestController
+@SpringBootApplication
+public class ControllerAndMain {
+
+  @RequestMapping("/")
+  public String hello() {
+    return "hello";
+  }
+
+  public static void main(String[] args) {
+    SpringApplication.run(
+      ControllerAndMain.class, args);
+  }
+}</code></pre></div></div></div></td></tr></tbody></table></section><section><div class="openblock centering"><div class="content"><div class="paragraph large-text"><p>Writing a single service is nice&#8230;&#8203;</p></div></div></div></section><section><div class="openblock centering"><div class="content"><div class="paragraph large-text"><p>&#8230;&#8203;but no microservice is an island</p></div></div></div></section><section id="_challenges_of_distributed_systems"><h2>Challenges of Distributed Systems</h2><div class="ulist"><ul><li><p>Configuration management</p></li><li><p>Service registration &amp; discovery</p></li><li><p>Routing &amp; balancing</p></li><li><p>Fault tolerance (Circuit Breakers!)</p></li><li><p>Monitoring</p></li><li><p>Concurrent API aggregation &amp; transformation</p></li></ul></div></section><section id="_spring_cloud"><h2>Spring Cloud</h2><div class="openblock centering"><div class="content"><div class="paragraph"><p><span class="image"><img src="images/spring-cloud-overview-bg.png" alt="spring cloud overview bg" width="60%"></span></p></div></div></div></section><section id="_spring_cloud_components"><h2>Spring Cloud Components</h2><div class="ulist"><ul><li><p><strong>Security</strong> - supports the implementation of security mechanisms</p></li><li><p><strong>Config</strong> - centralizes and dynamically adjusts the configuration</p></li><li><p><strong>Bus</strong> - sends dynamic configuration changes for Spring Cloud Config</p></li><li><p><strong>Sleuth</strong> - distributed tracing with tools like Zipkin or Htrace</p></li><li><p><strong>Zookeeper</strong> - supports Apache Zookeeper</p></li><li><p><strong>Consult</strong> - facilitates Services Discovery using Consul</p></li><li><p><strong>Cluster</strong> - implements leader election and stateful patterns using technologies
+like Zookeeper or Consul</p></li><li><p><strong>Stream</strong> - supports messaging using Redis, Rabbit or Kafka</p></li></ul></div></section><section id="_spring_cloud_netflix"><h2>Spring Cloud Netflix</h2><div class="ulist"><ul><li><p><strong>Zuul</strong> - routing</p></li><li><p><strong>Ribbon</strong> - Load Balancer.</p></li><li><p><strong>Hystrix</strong> - resilience in Microservices.</p></li><li><p><strong>Turbine</strong> -  can consolidate monitoring data from different Hystrix servers.</p></li><li><p><strong>Feign</strong> -  option for an easier implementation of REST clients</p></li><li><p><strong>Eureka</strong> - Service Discovery</p></li></ul></div></section></section>
+<section><section id="_service_discovery"><h2>Service Discovery</h2></section><section id="_why_eureka"><h2>Why Eureka?</h2><div class="ulist"><ul><li><p>REST based service registry</p></li><li><p>Supports replication</p></li><li><p>Caches on the client</p></li><li><p>Resilient</p></li><li><p>Fast, but not consistent</p></li><li><p>Foundation for other services</p></li></ul></div></section><section id="_eureka_client"><h2>Eureka Client</h2><div class="ulist"><ul><li><p>Registers automatically with the Eureka server under a defined name</p></li><li><p>Can access other Microservices</p></li><li><p>Integrates Load Balancing with Ribbon using</p><div class="ulist"><ul><li><p><code>DiscoveryClient</code>, <code>FeignClient</code></p></li><li><p>Eureka aware <code>RestTemplate</code> (sample later)</p></li></ul></div></li><li><p><code>@EnableDiscoveryClient</code> or <code>@EnableEurekaClient</code></p></li><li><p>Dependency to <code>spring-cloud-starter-eureka</code></p></li></ul></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code>eureka.client.serviceUrl.defaultZone=http://eureka:8761/eureka/
+eureka.instance.leaseRenewalIntervalInSeconds=5
+spring.application.name=catalog
+eureka.instance.metadataMap.instanceId=catalog:${random.value}
+eureka.instance.preferIpAddress=true</code></pre></div></div></section><section id="_eureka_server"><h2>Eureka Server</h2><div class="ulist"><ul><li><p><code>@EnableEurekaServer</code></p></li><li><p>Dependency to <code>cloud-starter-eureka-server</code></p></li></ul></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code class="java language-java">@EnableEurekaServer
+@EnableAutoConfiguration
+public class EurekaApplication {
+  public static void main(String[] args) {
+    SpringApplication.run(EurekaApplication.class, args);
+  }
+}</code></pre></div></div></section><section id="_eureka_dashboard"><h2>Eureka Dashboard</h2><div class="openblock centering"><div class="content"><div class="paragraph"><p><span class="image"><img src="images/eureka-dashboard.png" alt="eureka dashboard" width="80%"></span></p></div></div></div></section></section>
+<section><section id="_load_balancing"><h2>Load Balancing</h2></section><section id="_ribbon"><h2>Ribbon</h2><div class="ulist"><ul><li><p>Decentralized, client side Load Balancing</p></li><li><p>No bottle neck</p></li><li><p>Resilient</p></li><li><p>Data might be inconsistent</p></li></ul></div></section><section id="__code_resttemplate_code_load_balancing"><h2><code>RestTemplate</code> &amp; Load Balancing</h2><div class="ulist"><ul><li><p><code>@RibbonClient</code></p></li><li><p>Dependency to <code>spring-cloud-starter-ribbon</code></p></li></ul></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code class="java language-java">@RibbonClient(name = "ribbonApp")
+... // Left out other Spring Cloud / Boot Annotations
+public class RibbonApp {
+
+  @Autowired
+  private RestTemplate restTemplate;
+
+  public void callMicroservice() {
+    Store store = restTemplate.getForObject("http://stores/store/1", Store.class);
+  }
+}</code></pre></div></div></section></section>
+<section><section id="_communication"><h2>Communication</h2></section><section id="_zuul_routing"><h2>Zuul Routing</h2><table class="tableblock frame-all grid-all noredheader" style="width:100%"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><tbody><tr><td class="tableblock halign-left valign-top"><div><div class="ulist"><ul><li><p>One URL to outside</p></li><li><p>Internal many microservices</p></li><li><p>Maps route to server registered on Eureka, e.g. <code>/customer/**</code> to <code>CUSTOMER</code></p></li><li><p>Allows to internally change the structure of the Microservices</p></li><li><p>REST or HTML gui</p></li></ul></div></div></td><td class="tableblock halign-center valign-top"><div><div class="paragraph"><p><span class="image"><img src="images/zuul-proxy-bg.png" alt="zuul proxy bg" width="80%"></span></p></div></div></td></tr></tbody></table>
+<div class="ulist"><ul><li><p><code>@EnableZuulProxy</code>, dependency to <code>spring-cloud-starter-zuul</code></p></li><li><p>Alternatively <code>@EnableZuulServer</code> - no routing, uses filters</p></li></ul></div></section></section>
+<section id="_resilience"><h2>Resilience</h2></section>
+<section><div class="openblock thanks"><div class="content"><div class="paragraph"><p><span class="image"><img src="assets/images/smile.png" alt="smile"></span></p></div>
+<div class="paragraph"><p><h1>Thanks!</h1></p></div>
+<div class="paragraph underline"><p><span class="image"><img src="assets/images/underline.png" alt="underline"></span></p></div>
+<div class="paragraph large-text"><p>Any questions?</p></div></div></div></section></div></div><script src="reveal.js/lib/js/head.min.js"></script><script src="reveal.js/js/reveal.js"></script><script>// See https://github.com/hakimel/reveal.js#configuration for a full list of configuration options
+Reveal.initialize({
+  // Display controls in the bottom right corner
+  controls: true,
+  // Display a presentation progress bar
+  progress: true,
+  // Display the page number of the current slide
+  slideNumber: false,
+  // Push each slide change to the browser history
+  history: false,
+  // Enable keyboard shortcuts for navigation
+  keyboard: true,
+  // Enable the slide overview mode
+  overview: true,
+  // Vertical centering of slides
+  center: true,
+  // Enables touch navigation on devices with touch input
+  touch: true,
+  // Loop the presentation
+  loop: false,
+  // Change the presentation direction to be RTL
+  rtl: false,
+  // Turns fragments on and off globally
+  fragments: true,
+  // Flags if the presentation is running in an embedded mode,
+  // i.e. contained within a limited portion of the screen
+  embedded: false,
+  // Number of milliseconds between automatically proceeding to the
+  // next slide, disabled when set to 0, this value can be overwritten
+  // by using a data-autoslide attribute on your slides
+  autoSlide: 0,
+  // Stop auto-sliding after user input
+  autoSlideStoppable: true,
+  // Enable slide navigation via mouse wheel
+  mouseWheel: false,
+  // Hides the address bar on mobile devices
+  hideAddressBar: true,
+  // Opens links in an iframe preview overlay
+  previewLinks: false,
+  // Theme (e.g., beige, black, league, night, serif, simple, sky, solarized, white)
+  // NOTE setting the theme in the config no longer works in reveal.js 3.x
+  //theme: Reveal.getQueryHash().theme || 'conference',
+  // Transition style (e.g., none, fade, slide, convex, concave, zoom)
+  transition: Reveal.getQueryHash().transition || 'slide',
+  // Transition speed (e.g., default, fast, slow)
+  transitionSpeed: 'default',
+  // Transition style for full page slide backgrounds (e.g., none, fade, slide, convex, concave, zoom)
+  backgroundTransition: 'fade',
+  // Number of slides away from the current that are visible
+  viewDistance: 3,
+  // Parallax background image (e.g., "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'")
+  parallaxBackgroundImage: '',
+  // Parallax background size in CSS syntax (e.g., "2100px 900px")
+  parallaxBackgroundSize: '',
+
+  // The "normal" size of the presentation, aspect ratio will be preserved
+  // when the presentation is scaled to fit different resolutions. Can be
+  // specified using percentage units.
+  width: 1000,
+  height: 700,
+
+  // Factor of the display size that should remain empty around the content
+  margin: 0.1,
+
+  // Bounds for smallest/largest possible scale to apply to content
+  minScale: 0.2,
+  maxScale: 1.5,
+
+  // Optional libraries used to extend on reveal.js
+  dependencies: [
+      { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: 'reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+      { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      { src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+  ]
+});</script></body></html>
