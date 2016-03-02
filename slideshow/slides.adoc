@@ -23,7 +23,7 @@ Example for a Microservices-based Architecture
 
 [.newline]
 APPS Evolve! Summit 2016 +
-Frankfurt, 04 March 2016
+Frankfurt, 03 March 2016
 
 [.newline]
 {speaker}
