@@ -40,12 +40,11 @@ Frankfurt, 04 March 2016
 a|
 * Domain Architecture
 * Basic Technologies
-* Build & Deployment
 * Service Discovery
 a|
+* Load Balancing
 * Communication
 * Resilience
-* Load Balancing
 |
 |===
 
@@ -175,7 +174,6 @@ Writing a single service is nice...
 * Routing & balancing
 * Fault tolerance (Circuit Breakers!)
 * Monitoring
-* Concurrent API aggregation & transformation
 
 // ***************************************************************************
 
@@ -339,10 +337,99 @@ a|
 
 // ***************************************************************************
 
-// ***************************************************************************
+=== !
+
+* Microservices can deal with the failure of other Microservices
+* Even if a called Microservice is not available, they will still work
 
 // ***************************************************************************
 
+=== Hystrix
+
+* Enables resilient applications
+* Call in other thread
+* Won't block request handler
+* Can implement timeout
+
+// ***************************************************************************
+
+=== Circuit Breaker with Hystrix
+
+* Circuit open after certain number (_error threshold_) of failed calls
+* If open, calls not directed to called system
+* After configured window circuit closes
+
+// ***************************************************************************
+
+=== Hystrix with Annotations
+
+* Java proxies automaticaly created
+* Annotations of _javanica_ library
+* `@EnableCircuitBreaker` or `@EnableHystrix`, dependency to `spring-cloud-starter-hystrix`
+
+[source, java]
+----
+@HystrixCommand(fallbackMethod = "getItemsCache", commandProperties = {
+  @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "2")
+})
+
+public Collection<Item> findAll() {
+  this.itemsCache = ...
+  ...
+  return pagedResources.getContent();
+}
+
+private Collection<Item> getItemsCache() {
+  return itemsCache;
+}
+----
+
+// ***************************************************************************
+
+=== Hystrix Dashboard
+
+[.centering]
+--
+image:images/hystrix-dashboard.png[width=100%]
+--
+
+// ***************************************************************************
+
+=== Turbine
+
+* Aggregates data from different Hystrix systems
+* The state of all Circuit Breakers can be summarized on a single dashboard
+
+[.centering]
+--
+image:images/turbine-bg.png[width=60%]
+--
+
+// ***************************************************************************
+
+=== Turbine
+
+* `@EnableTurbine` and `@EnableEurekaClient`, dependency to `spring-cloud-starter-turbine`
+* Can use `@EnableHystrixDashboard` to display dahsboard on the same instance
+* Consolidated data determined by the configuration
+
+[source]
+----
+turbine:
+  aggregator:
+    clusterConfig: ORDER
+  appConfig: order
+----
+
+// ***************************************************************************
+
+== Conclusion
+
+* Easy to create new project
+* REST integrated
+* messaging supported
+* Simple deployment
+* Uniform operations
 
 // ***************************************************************************
 
@@ -358,5 +445,10 @@ image:{template-images-dir}/underline.png[]
 
 [.large-text]
 Any questions?
+
+[.newline]
+Microservices demo - https://github.com/ewolff/microservice +
+Travel demo - https://github.com/microservices-summit-2016/resilience-demo
 --
+
 // ***************************************************************************
