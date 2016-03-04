@@ -14,7 +14,7 @@
 
 // ***************************************************************************
 
-= Microservices With Spring Boot and Spring Cloud
+= Microservices With Spring Boot and Spring Cloud Netflix
 
 
 [.cover]
@@ -22,8 +22,8 @@
 Example for a Microservices-based Architecture
 
 [.newline]
-APPS Evolve! Summit 2016 +
-Frankfurt, 03 March 2016
+Capgemini APPS Evolve! Summit 2016 +
+Bad Soden, 3rd of March 2016
 
 [.newline]
 {speaker}
@@ -283,7 +283,7 @@ image:images/eureka-dashboard.png[width=80%]
 * Decentralized, client side Load Balancing
 * No bottle neck
 * Resilient
-* Data might be inconsistent
+* Registration information might be inconsistent
 
 // ***************************************************************************
 
@@ -329,7 +329,14 @@ a|
 * `@EnableZuulProxy`, dependency to `spring-cloud-starter-zuul`
 * Alternatively `@EnableZuulServer` - no routing, uses filters
 
+// ***************************************************************************
 
+== Eureka, Zuul & Ribbon Interactions
+
+[.centering]
+--
+image:images/netflix.png[width=90%]
+--
 
 // ***************************************************************************
 
