@@ -5,7 +5,7 @@
 // :source-highlighter: pygments
 // :pygments-style: tango
 :source-highlighter: highlightjs
-:speaker: Krzysztof Sobkowiak
+:speaker: Krzysztof Sobkowiak (http://twitter.com/ksobkowiak[@ksobkowiak])
 :speaker-title: The Apache Software Foundation Member, Senior Solution Architect at Capgemini
 :speaker-email: krzys.sobkowiak@gmail.com
 :speaker-blog: http://sobkowiak.github.io
@@ -28,6 +28,8 @@ Bad Soden, 3rd of March 2016
 [.newline]
 {speaker}
 [.speaker-title]
+The Apache Software Foundation Member +
+Senior Solution Architect at Capgemini
 
 --
 
