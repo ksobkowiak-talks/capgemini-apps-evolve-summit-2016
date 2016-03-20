@@ -1,6 +1,7 @@
 :revealjs_theme: conference
 :revealjs_customtheme: assets/css/conference.css
-:revealjs_width: 1000
+:revealjs_width: 1280
+:revealjs_height: 720
 // The valid options are coderay, highlightjs, prettify, and pygments
 // :source-highlighter: pygments
 // :pygments-style: tango
@@ -19,9 +20,8 @@
 
 [.cover]
 --
-Example for a Microservices-based Architecture
 
-[.newline]
+[.event]
 Capgemini APPS Evolve! Summit 2016 +
 Bad Soden, 3rd of March 2016
 
@@ -30,7 +30,8 @@ Bad Soden, 3rd of March 2016
 [.speaker-title]
 The Apache Software Foundation Member +
 Senior Solution Architect at Capgemini
-
+[.logo-left]
+image:{template-images-dir}/feather.png[width="60", link="http://apache.org"]
 --
 
 // ***************************************************************************
@@ -60,7 +61,7 @@ a|
 
 [.centering]
 --
-image:images/domain-architecture-bg.png[width=80%]
+image:images/domain-architecture-bg.png[width="65%"]
 --
 
 // ***************************************************************************
@@ -183,7 +184,7 @@ Writing a single service is nice...
 
 [.centering]
 --
-image:images/spring-cloud-overview-bg.png[width=60%]
+image:images/spring-cloud-overview-bg.png[width=45%]
 --
 
 // ***************************************************************************
@@ -271,7 +272,7 @@ public class EurekaApplication {
 
 [.centering]
 --
-image:images/eureka-dashboard.png[width=80%]
+image:images/eureka-dashboard.png[width=60%]
 --
 
 // ***************************************************************************
@@ -325,7 +326,7 @@ a|
 * Maps route to server registered on Eureka, e.g. `/customer/**` to `CUSTOMER`
 * Allows to internally change the structure of the Microservices
 * REST or HTML gui
-^a| image:images/zuul-proxy-bg.png[width=80%] |
+^a| image:images/zuul-proxy-bg.png[width=75%] |
 |===
 
 * `@EnableZuulProxy`, dependency to `spring-cloud-starter-zuul`
@@ -337,7 +338,7 @@ a|
 
 [.centering]
 --
-image:images/netflix.png[width=90%]
+image:images/netflix.png[width=80%]
 --
 
 // ***************************************************************************
@@ -399,7 +400,7 @@ private Collection<Item> getItemsCache() {
 
 [.centering]
 --
-image:images/hystrix-dashboard.png[width=100%]
+image:images/hystrix-dashboard.png[width=80%]
 --
 
 // ***************************************************************************
@@ -411,7 +412,7 @@ image:images/hystrix-dashboard.png[width=100%]
 
 [.centering]
 --
-image:images/turbine-bg.png[width=60%]
+image:images/turbine-bg.png[width=50%]
 --
 
 // ***************************************************************************
