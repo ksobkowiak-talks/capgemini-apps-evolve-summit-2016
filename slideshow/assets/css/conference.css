@@ -391,6 +391,7 @@ body {
       border: 0;
       background: 0;
       box-shadow: unset;
+      visibility: hidden;
     }
 
     .cover {
