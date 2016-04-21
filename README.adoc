@@ -1,4 +1,4 @@
-# Talks for Capgemini APPS Evolve! Summit 2016
+# Getting Started with Microservices & Spring Boot
 
 == Generate the slideshow and hands-on-labs
 
