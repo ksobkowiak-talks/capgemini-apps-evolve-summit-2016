@@ -13,8 +13,12 @@ for more infos how to generate the slides from the Asciidoctor templates.
 
 . Ensure Asciidoctor, Slim and their dependencies are installed:
 
-  $ gem install asciidoctor tilt thread_safe
-    gem install slim --version 2.1.0
+  $ gem install asciidoctor tilt thread_safe slim
++
+or 
++
+  $ gem install bundle 
+  $ bundle install
 
 === Clone repositories
 
