@@ -1,0 +1,474 @@
+
+@import url(https://fonts.googleapis.com/css?family=Sniglet|Walter+Turncoat);
+/*********************************************
+ * GLOBAL STYLES
+ *********************************************/
+body {
+  background: #111;
+  background-color: #111;
+  background-image: url("../images/background.png");
+  background-size: cover;
+}
+
+.reveal {
+  font-family: 'Sniglet', cursive;
+  font-size: 26px;
+  color: #eeeeee; }
+
+  ::selection {
+    color: #fff;
+    background: #e7ad52;
+    text-shadow: none; }
+
+  .reveal .slides > section,
+  .reveal .slides > section > section {
+    line-height: 1.3;
+    font-weight: inherit; }
+
+  /*********************************************
+   * HEADERS
+   *********************************************/
+  .reveal h1,
+  .reveal h2,
+  .reveal h3,
+  .reveal h4,
+  .reveal h5,
+  .reveal h6 {
+    margin: 0 0 20px 0;
+    color: #eee;
+    font-family: 'Walter Turncoat', cursive;
+    font-weight: normal;
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+    text-transform: none;
+    text-shadow: none;
+    text-align: center;
+    word-wrap: break-word; }
+
+
+  /************************************************
+  * Dec 26, KSO: Font Size 2em and width: 900px added
+  **************************************************/
+  .reveal h1 {
+    font-size: 2em;
+    width: 1280px; }
+
+  .reveal h2 {
+    font-size: 2em; }
+
+  .reveal h3 {
+    font-size: 1.55em; }
+
+  .reveal h4 {
+    font-size: 1em; }
+
+  .reveal h1 {
+    text-shadow: none; }
+
+
+    /*********************************************
+     * OTHER
+     *********************************************/
+    .reveal p {
+      margin: 20px 0;
+      line-height: 1.3; }
+
+    /* Ensure certain elements are never larger than the slide itself */
+    .reveal img,
+    .reveal video,
+    .reveal iframe {
+      max-width: 95%;
+      max-height: 95%; }
+
+    .reveal strong,
+    .reveal b {
+      font-weight: bold; }
+
+    .reveal em {
+      font-style: italic; }
+
+    .reveal ol,
+    .reveal dl,
+    .reveal ul {
+      display: inline-block;
+      text-align: left;
+      margin: 0 0 0 1em; }
+
+    .reveal ol {
+      list-style-type: decimal; }
+
+    .reveal ul {
+      list-style-type: disc; }
+
+    .reveal ul ul {
+      list-style-type: square; }
+
+    .reveal ul ul ul {
+      list-style-type: circle; }
+
+    .reveal ul ul,
+    .reveal ul ol,
+    .reveal ol ol,
+    .reveal ol ul {
+      display: block;
+      margin-left: 40px; }
+
+    .reveal dt {
+      font-weight: bold; }
+
+    .reveal dd {
+      margin-left: 40px; }
+
+    .reveal q,
+    .reveal blockquote {
+      quotes: none; }
+
+    .reveal blockquote {
+      display: block;
+      position: relative;
+      width: 70%;
+      margin: 20px auto;
+      padding: 5px;
+      font-style: italic;
+      background: rgba(255, 255, 255, 0.05);
+      box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2); }
+
+    .reveal blockquote p:first-child,
+    .reveal blockquote p:last-child {
+      display: inline-block; }
+
+    .reveal q {
+      font-style: italic; }
+
+    .reveal pre {
+      display: block;
+      position: relative;
+      width: 90%;
+      margin: 20px auto;
+      text-align: left;
+      font-size: 0.55em;
+      font-family: monospace;
+      line-height: 1.2em;
+      word-wrap: break-word;
+      box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3); }
+
+    .reveal code {
+      font-family: monospace; }
+
+    .reveal pre code {
+      display: block;
+      padding: 5px;
+      overflow: auto;
+      max-height: 400px;
+      word-wrap: normal; }
+
+    .reveal table {
+      margin: auto;
+      border-collapse: collapse;
+      border-spacing: 0; }
+
+    .reveal table th {
+      font-weight: bold; }
+
+    .reveal table th,
+    .reveal table td {
+      text-align: left;
+      padding: 0.2em 0.5em 0.2em 0.5em;
+      border-bottom: 1px solid; }
+
+    .reveal table th[align="center"],
+    .reveal table td[align="center"] {
+      text-align: center; }
+
+    .reveal table th[align="right"],
+    .reveal table td[align="right"] {
+      text-align: right; }
+
+    .reveal table tr:last-child td {
+      border-bottom: none; }
+
+    .reveal sup {
+      vertical-align: super; }
+
+    .reveal sub {
+      vertical-align: sub; }
+
+    .reveal small {
+      display: inline-block;
+      font-size: 0.6em;
+      line-height: 1.2em;
+      vertical-align: top; }
+
+    .reveal small * {
+      vertical-align: top; }
+
+    /*********************************************
+     * LINKS
+     *********************************************/
+    .reveal a {
+      color: #eeeeee;
+      text-decoration: none;
+      -webkit-transition: color 0.15s ease;
+      -moz-transition: color 0.15s ease;
+      transition: color 0.15s ease; }
+
+    .reveal a:hover {
+      color: #f3d7ac;
+      text-shadow: none;
+      border: none; }
+
+    .reveal .roll span:after {
+      color: #fff;
+      background: #d08a1d; }
+
+    /*********************************************
+     * IMAGES
+     * Dec 26 2015, KSO: Remove the shadow box around the image
+     *********************************************/
+    .reveal section img {
+      margin: 15px 0px;
+      -webkit-transition: all .2s linear;
+      -moz-transition: all .2s linear;
+      -ms-transition: all .2s linear;
+      -o-transition: all .2s linear;
+      transition: all .2s linear; }
+
+    .reveal section img.plain {
+      border: 0;
+      box-shadow: none; }
+
+    .reveal a img {
+      -webkit-transition: all 0.15s linear;
+      -moz-transition: all 0.15s linear;
+      transition: all 0.15s linear; }
+
+    .reveal a:hover img {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: #e7ad52;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.55); }
+
+    /*********************************************
+     * NAVIGATION CONTROLS
+     *********************************************/
+    .reveal .controls .navigate-left,
+    .reveal .controls .navigate-left.enabled {
+      border-right-color: #e7ad52; }
+
+    .reveal .controls .navigate-right,
+    .reveal .controls .navigate-right.enabled {
+      border-left-color: #e7ad52; }
+
+    .reveal .controls .navigate-up,
+    .reveal .controls .navigate-up.enabled {
+      border-bottom-color: #e7ad52; }
+
+    .reveal .controls .navigate-down,
+    .reveal .controls .navigate-down.enabled {
+      border-top-color: #e7ad52; }
+
+    .reveal .controls .navigate-left.enabled:hover {
+      border-right-color: #f3d7ac; }
+
+    .reveal .controls .navigate-right.enabled:hover {
+      border-left-color: #f3d7ac; }
+
+    .reveal .controls .navigate-up.enabled:hover {
+      border-bottom-color: #f3d7ac; }
+
+    .reveal .controls .navigate-down.enabled:hover {
+      border-top-color: #f3d7ac; }
+
+    /*********************************************
+     * PROGRESS BAR
+     *********************************************/
+    .reveal .progress {
+      background: rgba(0, 0, 0, 0.2); }
+
+    .reveal .progress span {
+      background: #e7ad52;
+      -webkit-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+      -moz-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+      transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985); }
+
+
+      /*******************************************************
+       * Asciidoctor Table style rendering
+       * Feb 27, CHM: Added & Refactor to display the borders
+       * Mar 02, CHM: Add caption to display the Table title with a different style, color
+       * Mar 03, CHM: Improve style to be compliant with Redhat styles
+       * Mar 06, CHM: Add a noredheader class to avoid to display the first line in red of a table containing images, ..
+       ******************************************************/
+      /* line 352, ../conference-redhat.scss */
+      table.tableblock, table.tableblock td {
+        border-style: none;
+        border-color: #F3F4F4;
+        border-width: 0px;
+        border-collapse: collapse;
+        border-spacing: 0px;
+        padding: 5px;
+      }
+
+      /* line 361, ../conference-redhat.scss */
+      table.tableblock > caption {
+        line-height: 1.4;
+        color: #333333;
+        margin-top: 0.2em;
+        margin-bottom: 0.5em;
+        overflow: visible;
+        max-width: 0;
+        white-space: nowrap;
+        display: table-caption;
+      }
+
+      /* line 372, ../conference-redhat.scss */
+      table.tableblock:not(.noredheader) thead tr, table.tableblock:not(.noredheader) :not(thead) + tbody tr:first-child td {
+        background-color: #a70000;
+        text-align: left;
+        padding: 10px;
+        color: white;
+        font-size: 24px;
+      }
+
+      /* line 380, ../conference-redhat.scss */
+      table.tableblock.noredheader tr:first-child td {
+        /*  background-color: #EEEEEE;*/
+      }
+
+      /* line 384, ../conference-redhat.scss */
+      table.tableblock tr:nth-child(even) {
+        /*  background: white;*/
+      }
+
+      /* line 388, ../conference-redhat.scss */
+      table.tableblock tr:nth-child(odd) {
+        /*  background-color: #F3F4F4;*/
+      }
+
+      /* line 392, ../conference-redhat.scss */
+      th.tableblock.halign-left, td.tableblock.halign-left {
+        text-align: left;
+      }
+
+      /* line 396, ../conference-redhat.scss */
+      th.tableblock.halign-right, td.tableblock.halign-right {
+        text-align: right;
+      }
+
+      /* line 400, ../conference-redhat.scss */
+      th.tableblock.halign-center, td.tableblock.halign-center {
+        text-align: center;
+      }
+
+      /* line 404, ../conference-redhat.scss */
+      th.tableblock.valign-top, td.tableblock.valign-top {
+        vertical-align: top;
+      }
+
+      /* line 408, ../conference-redhat.scss */
+      th.tableblock.valign-bottom, td.tableblock.valign-bottom {
+        vertical-align: bottom;
+      }
+
+      /* line 412, ../conference-redhat.scss */
+      th.tableblock.valign-middle, td.tableblock.valign-middle {
+        vertical-align: middle;
+      }
+
+
+    .logo  img {
+      position: relative;
+      top: -30px;
+      left: 0px;
+      border: 0;
+      background: 0;
+      box-shadow: unset;
+    }
+
+    .logo-left  img {
+      position: relative;
+      top: -180px;
+      left: -250px;
+      border: 0;
+      background: 0;
+      box-shadow: unset;
+      visibility: hidden;
+    }
+
+    .cover {
+      position:absolute;
+      top:200px;
+      left:10px;
+      right:10px;
+    }
+
+    .cover .speaker-title {
+      font-size: 80%
+    }
+
+    .cover .event {
+      font-size: 80%
+    }
+
+    /*********************************************
+     * Corporate Logo Header Image
+     * Feb 26, CHM: Changed the height from 80px to 0px
+     *********************************************/
+    /* line 116, ../conference-redhat.scss */
+    .header {
+      position: absolute;
+      margin: 0 auto;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 0px;
+      font-family: "Liberation Sans", "Overpass", "Open Sans", sans-serif;
+      font-size: 20px;
+      text-align: center;
+    }
+
+    .newline:before {
+        content: '\A';
+        white-space:pre;
+    }
+
+    /******************************************
+     * Fill screen to 100% & align text on left
+     * Feb 26, CHM : Add top: 370px to fill the screen to 100%
+     * Mar 24 3015, CHM : Remove top due to cutoff with safari, firefox & add margin-top
+     ******************************************/
+
+    .reveal .slides section:not(:first-of-type) {
+      text-align: left;
+      /* margin-top: $slides-margin-top; WE don't use it as the value is assigned by Revealjs */
+    }
+
+    .thanks {
+      text-align: center;
+    }
+
+    .thanks .large-text {
+      font-size: 2em;
+    }
+
+    .thanks .underline {
+      position: relative;
+      top: -40px;
+    }
+
+    .centering {
+      text-align: center;
+    }
+
+    .centering .large-text {
+      font-size: 2em
+    }
+
+    .listingblock .highlight {
+      font-size: 0.65em;
+      width: 100%;
+    }
+
+    .listingblock .pygments {
+      font-size: 0.65em;
+      width: 100%;
+    }

@@ -1,6 +1,0 @@
-source "https://rubygems.org"
-
-gem "asciidoctor"
-gem "tilt"
-gem "thread_safe"
-gem "slim"
