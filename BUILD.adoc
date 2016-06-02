@@ -24,13 +24,13 @@ or
 
 . Clone this repository with pre-configured submodules
 
-  $ git clone --recursive git@github.com:microservices-summit-2016/resilience-presentations.git
+  $ git clone --recursive git@github.com:sobkowiak/capgemini-apps-evolve-summit-2016.git
 
 You can clone the dependencies separately
 
 . Clone this repository
 
-  $ git clone git@github.com:microservices-summit-2016/resilience-presentations.git
+  $ git clone git@github.com:sobkowiak/capgemini-apps-evolve-summit-2016.git
 
 . Clone `asciidoctor/asciidoctor-reveal.js` to get templates for rendering presentation HTML:
 
