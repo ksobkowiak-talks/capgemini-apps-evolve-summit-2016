@@ -10,6 +10,12 @@ body {
   background-size: cover;
 }
 
+html {
+  background-color: #111;
+  background-image: url("../images/background.png");
+  background-size: cover;
+}
+
 .reveal {
   font-family: 'Sniglet', cursive;
   font-size: 26px;
