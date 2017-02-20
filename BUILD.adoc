@@ -1,0 +1,81 @@
+= Instructions
+
+== Generate the slideshow and hands-on-labs
+
+You need https://github.com/asciidoctor/asciidoctor[Asciidoctor] and
+https://github.com/asciidoctor/asciidoctor-reveal.js[reveal.js Backend for Asciidoctor]
+to generate the slideshow and hands-on-lab from the asciidoc files.
+
+See https://github.com/asciidoctor/asciidoctor-reveal.js/blob/master/README.adoc[reveal.js Backend for Asciidoctor]
+for more infos how to generate the slides from the Asciidoctor templates.
+
+=== Install Asciidoctor & reveal.js
+
+. Ensure Asciidoctor, Slim and their dependencies are installed:
+
+  $ gem install asciidoctor tilt thread_safe slim
++
+or 
++
+  $ gem install bundle 
+  $ bundle install
+
+=== Clone repositories
+
+. Clone this repository with pre-configured submodules
+
+  $ git clone --recursive git@github.com:sobkowiak/capgemini-apps-evolve-summit-2016.git
+
+You can clone the dependencies separately
+
+. Clone this repository
+
+  $ git clone git@github.com:sobkowiak/capgemini-apps-evolve-summit-2016.git
+
+. Clone `asciidoctor/asciidoctor-reveal.js` to get templates for rendering presentation HTML:
+
+  $ git clone git://github.com/asciidoctor/asciidoctor-reveal.js.git
+
++
+Currently used with commit `c75673b21ff004c09fdd086db4562b30d4aaa0b0` (no tags are
+available in the git repository).
+
+. Copy or clone presentation library (to output destination/branch)
+
+  $ git clone -b 3.2.0 git://github.com/hakimel/reveal.js.git
+
+=== Generate the Slideshow
+
+Generate HTML from the Asciidoctor templates
+
+  $ asciidoctor -T asciidoctor-reveal.js/templates/slim/ slides.adoc
+
+=== Display the presentation
+
+It's recommended to use http server to server the generated content. You can use
+`http-server` or `jekyll`.
+
+==== `http-server`
+
+To use `http-server` you need to insall https://nodejs.org/en/download[Node.js]
+and next the `http-server`
+
+  $ npm install http-server -g
+
+Next you can server the content using command
+
+  $ http-server
+
+The content is available under http://127.0.0.1:8080/slides.html
+
+==== `jekyll`
+
+To use `jekyll` you have to install the gem first
+
+  $ gem install jekyll
+
+Next you can server the content using command
+
+  $ jekyll serve
+
+The content is available under http://127.0.0.1:4000/slides.html
